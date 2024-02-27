@@ -1,0 +1,34 @@
+<div class="container">
+    <form [formGroup]="fmrEnterprise" (ngSubmit)="saveEnterprise()">
+        <div class="container">
+            <h5>Registrar</h5>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="ruc" class="form-label">Ruc</label>
+                    <input type="text" class="form-control" id="rucEmpresa" placeholder="Ingrese ruc" name="rucEmpresa" formControlName="rucEmpresa">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="nombreComercial" class="form-label">Razón social</label>
+                    <input type="text" class="form-control" id="rzcEmpresa" placeholder="Ingrese razon social" name="rzcEmpresa" formControlName="rzcEmpresa">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="razonSocial" class="form-label">Nombre Comercial</label>
+                    <input type="text" class="form-control" id="ncoEmpresa" placeholder="Ingrese nombre comercial" name="ncoEmpresa" formControlName="ncoEmpresa">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="dirEmpresa" placeholder="Ingrese direccion" name="dirEmpresa" formControlName="dirEmpresa">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="direccion" class="form-label">Distrito</label>
+                    <input type="text" class="form-control" id="disEmpresa" placeholder="Ingrese distrito" name="disEmpresa" formControlName="disEmpresa">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

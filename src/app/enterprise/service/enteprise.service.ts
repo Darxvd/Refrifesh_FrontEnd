@@ -13,8 +13,16 @@ export class EntepriseService {
   constructor(private http: HttpClient) { }
 
   
-  getEnterprise(): Observable<any>{
-    return this.http.get(this.urlgeneral+'/list-enterprise');
+  getEnterpriseActive(): Observable<any>{
+    return this.http.get(this.urlgeneral+'/list-active');
+  }
+
+  saveEnterprise(enterpriseData: any): Observable<any>{
+    return this.http.post<any>(this.urlgeneral+'/save', enterpriseData);
+  }
+
+  deleteSoftEnterprise(id: number){
+    return this.http.delete(this.urlgeneral+'/delete-soft/'+id);
   }
 
 }
