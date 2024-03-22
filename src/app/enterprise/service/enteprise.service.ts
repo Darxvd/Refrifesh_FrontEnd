@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class EntepriseService {
 
+  id = 0;
+
   private urlgeneral = 'http://localhost:8085/enterprise';
 
   constructor(private http: HttpClient) { }
@@ -24,5 +26,15 @@ export class EntepriseService {
   deleteSoftEnterprise(id: number){
     return this.http.delete(this.urlgeneral+'/delete-soft/'+id);
   }
+
+  getIdEnterprise(){
+    return this.http.get<any>(this.urlgeneral+'/find/'+this.id);
+  }
+
+  updateEnterprise(enterpriseId: number, enterpriseData: any): Observable<any> {
+    const url = `${this.urlgeneral}/update/${enterpriseId}`;
+    return this.http.put(url, enterpriseData);
+  }
+  
 
 }

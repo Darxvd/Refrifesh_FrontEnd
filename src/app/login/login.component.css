@@ -1,0 +1,329 @@
+/*Desktop*/
+@media screen and (min-width: 1024px) {
+    .contenedor {
+        width: 100%;
+        min-height: 100vh;
+        background-image: url('../../assets/img/img_service.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    form {
+        background-color: white;
+        width: 320px;
+        height: 330px;
+        border-radius: 10px;
+        margin-top: 28px;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    .empresa{
+        width: 100%;
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-flex;
+    }
+
+    .empresa h1,
+    .empresa img {
+        display: inline;
+    }
+    
+    .refri{
+        color: #2442AB;
+        font-weight: bold;
+        padding-left: 18px;
+    }
+
+    .fresh{
+        color: #FF3D00;
+        font-weight: bold;
+    }
+
+    .empresa img{
+        width: 50px;
+        height: 50px;
+    }
+
+    hr{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .campos{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        margin-left: 9px;
+        color: #FF3D00;
+        font-size: 17px;
+    }
+
+    input{
+        border-radius: 5px;
+        border: 1px solid #2442AB;
+        width: 300px;
+        height: 35px;
+        margin-left: 9px;
+        padding: 10px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+    
+    button{
+        background-color: #FF3D00;
+        color: white;
+        border: 0px;
+        margin-top: 8px;
+        border-radius: 5px;
+        width: 100px;
+        padding: 5px;
+        margin-left: 208px;
+    }
+    
+    button:hover{
+        background-color: #c44620;
+    }
+    
+    a{
+        margin-top: 18px;
+        color: #2442AB;
+        text-align: center;
+    }
+
+    .pie-de-pagina {
+        color: white;
+        text-align: center;
+        margin-top: auto;
+        width: 100%;
+        margin-bottom: 0px;
+    }
+}
+
+/*Tablet*/
+@media screen and (min-width: 510px) and (max-width: 1023px){
+    .contenedor{
+        width: 100%;
+        height: 100vh;
+        border: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        border: 1px solid #818181;
+        width: 500px;
+        height: 370px;
+        border-radius: 10px;
+        margin-top: auto; 
+    }
+
+    .empresa{
+        width: 100%;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-flex;
+    }
+
+    .empresa h1,
+    .empresa img {
+        display: inline;
+    }
+    
+    .refri{
+        color: #2442AB;
+        font-weight: bold;
+        padding-left: 70px;
+        font-size: 50px;
+    }
+
+    .fresh{
+        color: #FF3D00;
+        font-weight: bold;
+        font-size: 50px;
+    }
+
+    .empresa img{
+        margin-top: 10px;
+        width: 50px;
+        height: 50px;
+    }
+
+    hr{
+        margin-top: 0px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .campos{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        margin-left: 9px;
+        color: #FF3D00;
+        font-size: 17px;
+    }
+
+    input{
+        border-radius: 5px;
+        border: 1px solid #2442AB;
+        width: 478px;
+        height: 35px;
+        margin-left: 9px;
+        padding: 10px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+    
+    button{
+        background-color: #FF3D00;
+        color: white;
+        border: 0px;
+        margin-top: 8px;
+        border-radius: 5px;
+        width: 100px;
+        padding: 5px;
+        margin-left: 384px;
+    }
+    
+    button:hover{
+        background-color: #c44620;
+    }
+
+    a{
+        margin-top: 18px;
+        color: #2442AB;
+        text-align: center;
+    }
+
+    .pie-de-pagina{
+        margin-top: auto;
+    }
+}
+
+@media screen and (max-width: 509px){
+    .contenedor{
+        width: 100%;
+        height: 100vh;
+        border: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        border: 1px solid #818181;
+        width: 350px;
+        height: 360px;
+        border-radius: 10px;
+        margin-top: auto; 
+    }
+
+    .empresa{
+        width: 100%;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-flex;
+    }
+
+    .empresa h1,
+    .empresa img {
+        display: inline;
+    }
+    
+    .refri{
+        color: #2442AB;
+        font-weight: bold;
+        padding-left: 30px;
+        font-size: 40px;
+    }
+
+    .fresh{
+        color: #FF3D00;
+        font-weight: bold;
+        font-size: 40px;
+    }
+
+    .empresa img{
+        margin-top: 8px;
+        width: 40px;
+        height: 40px;
+    }
+
+    hr{
+        margin-top: 0px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .campos{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        margin-left: 14px;
+        color: #FF3D00;
+        font-size: 17px;
+    }
+
+    input{
+        border-radius: 5px;
+        border: 1px solid #2442AB;
+        width: 320px;
+        height: 35px;
+        margin-left: 14px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+    
+    button{
+        background-color: #FF3D00;
+        color: white;
+        border: 0px;
+        margin-top: 8px;
+        border-radius: 5px;
+        width: 100px;
+        padding: 5px;
+        margin-left: 234px;
+    }
+
+    a{
+        margin-top: 18px;
+        color: #2442AB;
+        text-align: center;
+    }
+
+    .pie-de-pagina{
+        margin-top: auto;
+    }
+
+}

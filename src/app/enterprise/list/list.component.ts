@@ -18,10 +18,14 @@ export class ListComponent implements OnInit{
     this.getEnterpriseActive();
   }
 
+  getId(id:number){
+    this.sEnterprise.id=id;
+    this.router.navigate(['empresa/update']);
+  }
+
   getEnterpriseActive(){
     this.sEnterprise.getEnterpriseActive().subscribe(enterprise=>{
       this.enterprise=enterprise;
-      console.log(enterprise);
     })
   }
 

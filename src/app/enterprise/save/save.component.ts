@@ -31,7 +31,10 @@ export class SaveComponent {
       this.fmrEnterprise.reset();
       this.router.navigate(['empresa/list'])
     })
+  }
 
+  exitList(){
+    this.router.navigate(['empresa/list'])
   }
 
 }
