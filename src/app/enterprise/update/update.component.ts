@@ -46,12 +46,12 @@ export class UpdateComponent implements OnInit{
   updateEnterprise(){
     this.sEnterprise.updateEnterprise(this.enterprise.idEmpresa, this.fmrEnterprise.value).subscribe(data=>{
       this.fmrEnterprise.reset();
-      this.router.navigate(['empresa/list']);
+      this.router.navigate(['home/empresa/list']);
     });
   }
 
   exitList(){
-    this.router.navigate(['empresa/list'])
+    this.router.navigate(['home/empresa/list'])
   }
 
   

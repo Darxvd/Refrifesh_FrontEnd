@@ -20,7 +20,7 @@ export class ListComponent implements OnInit{
 
   getId(id:number){
     this.sEnterprise.id=id;
-    this.router.navigate(['empresa/update']);
+    this.router.navigate(['home/empresa/update']);
   }
 
   getEnterpriseActive(){

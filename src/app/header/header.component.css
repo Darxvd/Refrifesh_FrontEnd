@@ -1,0 +1,30 @@
+header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h4{
+    margin-right: 10px;
+    color: rgb(11, 11, 78);
+    margin-bottom: 0px;
+    font-size: 20px;
+}
+
+button {
+    margin-left: auto;
+    background-color: #FF3D00;
+    border-radius: 5px;
+    border: 0px;
+    padding: 5px;
+    color: white;
+}

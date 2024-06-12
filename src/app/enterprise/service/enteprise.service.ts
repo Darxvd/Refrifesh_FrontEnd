@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
+import { EnterpriseEntity } from '../model/enterprise-entity';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,8 @@ export class EntepriseService {
     return this.http.put(url, enterpriseData);
   }
   
+  searchEnterprisesByRzc(name: string): Observable<EnterpriseEntity[]> {
+    return this.http.get<EnterpriseEntity[]>(`${this.urlgeneral}/list-by-name-active/${name}`)
+  }
 
 }

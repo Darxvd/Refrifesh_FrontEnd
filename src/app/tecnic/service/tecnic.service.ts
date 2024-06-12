@@ -35,5 +35,8 @@ export class TecnicService {
     return this.http.put(url, tecnicData);
   }
   
+  searchTecnicByTec(name: string): Observable<TecnicEntity[]> {
+    return this.http.get<TecnicEntity[]>(`${this.urlgeneral}/list-by-name-active/${name}`)
+  }
 
 }

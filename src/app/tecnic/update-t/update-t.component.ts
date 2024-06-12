@@ -39,14 +39,14 @@ export class UpdateTComponent implements OnInit{
   updateTecnic() {
     this.sTecnic.updateTecnic(this.tecnic.idTecnico, this.frmTecnic.value).subscribe(data=>{
       this.frmTecnic.reset();
-      this.router.navigate(['tecnico/list']);
+      this.router.navigate(['home/tecnico/list']);
     })
   }
   
   
   
   exitList() {
-    this.router.navigate(['tecnico/list']);
+    this.router.navigate(['home/tecnico/list']);
   }
 
 }

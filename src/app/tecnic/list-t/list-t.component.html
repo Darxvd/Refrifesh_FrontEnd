@@ -5,6 +5,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Tecnico</th>
+            <th scope="col">Firma</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -12,6 +13,7 @@
           <tr *ngFor="let tecnico of tecnic">
             <th scope="row">{{ tecnico.idTecnico}}</th>
             <td>{{tecnico.tecTecnico}}</td>
+            <td>{{tecnico.firmaImagen}}</td>
             <td>
               <a class="btn btn-warning" (click)="getId(tecnico.idTecnico)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

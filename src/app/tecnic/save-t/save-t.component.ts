@@ -13,24 +13,41 @@ export class SaveTComponent {
 
   frmTecnic = new FormGroup({
     idTecnico: new FormControl(''),
-    tecTecnico: new FormControl(''),
+    tecTecnico: new FormControl('', Validators.required),
     actTecnico: new FormControl('')
-  })
+  });
+  selectedFile: File | null = null;
 
   constructor(private sTecnic: TecnicService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 
-  saveTecnic(){
-    this.sTecnic.saveTecnic(this.frmTecnic.value).subscribe(res=>{
-      this.frmTecnic.reset();
-      this.router.navigate(['tecnico/list'])
-    })
+  saveTecnic() {
+    const tecTecnico = this.frmTecnic.get('tecTecnico');
+    if (tecTecnico && tecTecnico.value) {
+      const formData = new FormData();
+      formData.append('tecTecnico', tecTecnico.value);
+      formData.append('actTecnico', 'Activo'); 
+      if (this.selectedFile) {
+        formData.append('firmaImagen', this.selectedFile);
+      }
+    
+      this.sTecnic.saveTecnic(formData).subscribe(res => {
+        this.frmTecnic.reset();
+        this.router.navigate(['home/tecnico/list']);
+      });
+    } else {
+      console.error('El campo nombreCompleto es nulo o está vacío.');
+    }
   }
-
   
+  
+
   exitList() {
-    this.router.navigate(['tecnico/list']);
+    this.router.navigate(['home/tecnico/list']);
   }
 }

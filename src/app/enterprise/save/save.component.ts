@@ -29,12 +29,12 @@ export class SaveComponent {
   saveEnterprise(){
     this.sEnterprise.saveEnterprise(this.fmrEnterprise.value).subscribe(res=>{
       this.fmrEnterprise.reset();
-      this.router.navigate(['empresa/list'])
+      this.router.navigate(['home/empresa/list'])
     })
   }
 
   exitList(){
-    this.router.navigate(['empresa/list'])
+    this.router.navigate(['home/empresa/list'])
   }
 
 }
