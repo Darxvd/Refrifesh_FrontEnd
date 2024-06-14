@@ -4,6 +4,8 @@ import { EnterpriseEntity } from 'src/app/enterprise/model/enterprise-entity';
 import { EntepriseService } from 'src/app/enterprise/service/enteprise.service';
 import { TecnicEntity } from 'src/app/tecnic/model/tecnic-entity';
 import { TecnicService } from 'src/app/tecnic/service/tecnic.service';
+import { InformService } from '../service/inform.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-save-i',
@@ -15,6 +17,7 @@ export class SaveIComponent implements OnInit{
 
 
   fmrInfTecnic = new FormGroup({
+    idInfo: new FormControl(''),
     idEmpresa: new FormControl(''),
     idTecnico: new FormControl(''),
     fallaInfo: new FormControl(''),
@@ -41,12 +44,12 @@ export class SaveIComponent implements OnInit{
   enterprises: EnterpriseEntity[] = [];
   tecnics: TecnicEntity[] = [];
 
-  constructor(private enterpriseService: EntepriseService, private tecnicService: TecnicService) { }
+  constructor(private enterpriseService: EntepriseService, private tecnicService: TecnicService, private informtecnic: InformService, private router: Router) { }
 
   ngOnInit() {
     const now = new Date();
-    const localDate = now.toISOString().substring(0, 10); // Formato YYYY-MM-DD
-    const localTime = now.toTimeString().substring(0, 5); // Formato HH:MM
+    const localDate = now.toISOString().substring(0, 10);
+    const localTime = now.toTimeString().substring(0, 5);
 
     this.fmrInfTecnic.patchValue({
       fechaInfo: localDate,
@@ -117,5 +120,18 @@ export class SaveIComponent implements OnInit{
     nombretecnico.value = '';
   }
   }
+
+  saveInformTecnic(){
+    const informData = {
+        ...this.fmrInfTecnic.value,
+        idEmpresa: this.selectedEnterprise?.idEmpresa,
+        idTecnico: this.selectedtecnic?.idTecnico
+    };
+    this.informtecnic.saveInformTecnic(informData).subscribe(res=>{
+        this.fmrInfTecnic.reset();
+        this.router.navigate(['home/informe/list']);
+    });
+}
+
 
 }

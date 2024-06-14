@@ -10,6 +10,7 @@ import { UserDEntity } from '../model/user-entity-ts';
 export class UserService {
 
   private urlgeneral = 'http://localhost:8085/login';
+  private loggedInUser: UserDEntity | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -17,4 +18,13 @@ export class UserService {
     const loginUrl = `${this.urlgeneral}/loggin`;
     return this.http.post<LoginEntity>(loginUrl, user);
   }
+
+  setLoggedInUser(user: UserDEntity): void {
+    this.loggedInUser = user;
+  }
+
+  getLoggedInUser(): UserDEntity | null {
+    return this.loggedInUser;
+  }
+
 }

@@ -19,15 +19,15 @@ export class LoginComponent {
 
   onSubmit() {
     this.loginService.login(this.user).subscribe(
-      (response: LoginEntity) => {
+      (response: UserDEntity) => {
         console.log('Respuesta del servicio de inicio de sesión:', response);
+        this.loginService.setLoggedInUser(response);
         this.router.navigate(['home']);
+      },
+      (error) => {
+        console.error('Error al iniciar sesión:', error);
+        this.errorMessage = 'Usuario o contraseña incorrectos';
       }
     );
   }
-  
-  
-  
-
-
 }

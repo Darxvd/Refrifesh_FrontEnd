@@ -13,10 +13,12 @@ import { UserService } from '../login/service/user.service';
 export class HeaderComponent implements OnInit{
   
   person: UserDEntity[] = [];
+  loggedInUser: UserDEntity | null = null;
 
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
+    this.loggedInUser = this.userService.getLoggedInUser();
   }
 
   cerrarSesion() {
