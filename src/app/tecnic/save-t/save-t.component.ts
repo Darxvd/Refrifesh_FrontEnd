@@ -33,7 +33,6 @@ export class SaveTComponent {
 
       this.sTecnic.saveTecnic(formData).subscribe(
         response => {
-          console.log('Técnico guardado correctamente:', response);
           this.frmTecnic.reset();
           this.router.navigate(['home/tecnico/list']);
         },
