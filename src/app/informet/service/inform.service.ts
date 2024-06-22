@@ -19,5 +19,11 @@ export class InformService {
 
   saveInformTecnic(inftecnicData: any): Observable<any> {
     return this.http.post<any>(`${this.urlgeneral}/save`, inftecnicData);
-  }  
+  }
+
+  downloadInformeTecnico(id_info: number): Observable<Blob> {
+    const url = `${this.urlgeneral}/reporte/informe/${id_info}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
 }

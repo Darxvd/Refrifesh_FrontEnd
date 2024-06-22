@@ -10,28 +10,48 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit{
 
-  enterprise: EnterpriseEntity[]=[]
+  enterprises: EnterpriseEntity[] = [];
+  currentPage = 0;
+  pageSize = 5;
+  totalItems = 0;
+  totalPages = 0;
 
-  constructor(private sEnterprise: EntepriseService, private router: Router){}
+  constructor(private sEnterprise: EntepriseService, private router: Router) {}
 
   ngOnInit(): void {
     this.getEnterpriseActive();
   }
 
-  getId(id:number){
-    this.sEnterprise.id=id;
-    this.router.navigate(['empresa/update']);
+  getEnterpriseActive(): void {
+    this.sEnterprise.getEnterpriseActive(this.currentPage, this.pageSize).subscribe(data => {
+      this.enterprises = data.content;
+      this.totalItems = data.totalElements;
+      this.calculateTotalPages();
+    });
   }
 
-  getEnterpriseActive(){
-    this.sEnterprise.getEnterpriseActive().subscribe(enterprise=>{
-      this.enterprise=enterprise;
-    })
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.totalItems / this.pageSize);
   }
 
-  deleteSoftEnterprise(id:number){
-    this.sEnterprise.deleteSoftEnterprise(id).subscribe(enterprise=>{
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.getEnterpriseActive();
+  }
+  
+  arrayOne(): any[] {
+    return Array(this.totalPages).fill(0).map((x, i) => i);
+  }
+
+  getId(id: number): void {
+    this.sEnterprise.id = id;
+    this.router.navigate(['home/empresa/update']);
+  }
+
+  deleteSoftEnterprise(id: number): void {
+    this.sEnterprise.deleteSoftEnterprise(id).subscribe(() => {
       this.getEnterpriseActive();
-    })
+    });
   }
+  
 }

@@ -12,19 +12,26 @@ import { SaveTComponent } from './tecnic/save-t/save-t.component';
 import { UpdateTComponent } from './tecnic/update-t/update-t.component';
 import { ListIComponent } from './informet/list-i/list-i.component';
 import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SaveIComponent } from './informet/save-i/save-i.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'empresa/list', component: ListComponent },
-  { path: 'empresa/save', component: SaveComponent },
-  { path: 'empresa/update', component: UpdateComponent },
-  { path: 'tecnico/list', component: ListTComponent },
-  { path: 'tecnico/save', component: SaveTComponent },
-  { path: 'tecnico/update', component: UpdateTComponent },
-  { path: 'informe/list', component: ListIComponent },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' }
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      { path: 'empresa/list', component: ListComponent },
+      { path: 'empresa/save', component: SaveComponent },
+      { path: 'empresa/update', component: UpdateComponent },
+      { path: 'tecnico/list', component: ListTComponent },
+      { path: 'tecnico/save', component: SaveTComponent },
+      { path: 'tecnico/update', component: UpdateTComponent },
+      { path: 'informe/list', component: ListIComponent },
+      { path: 'informe/save', component: SaveIComponent}
+    ]
+  }
 ];
 
 

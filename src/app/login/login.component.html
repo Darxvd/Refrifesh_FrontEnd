@@ -1,5 +1,5 @@
   <div class="contenedor">
-    <form>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div class="empresa">
         <h1 class="refri">REFRI</h1>
         <h1 class="fresh">FRESH</h1>
@@ -8,10 +8,10 @@
       <hr>
       <div class="campos">
         <label>Usuario</label>
-        <input type="text" placeholder="Ingrese su usuario">
+        <input type="text" id="usuUsuario" name="usuUsuario" [(ngModel)]="user.usuUsuario" placeholder="Ingrese su usuario" required>
         <p class="error"></p>
         <label>Contraseña</label>
-        <input type="text" placeholder="Ingrese su contraseña">
+        <input type="password" id="claUsuario" name="claUsuario" [(ngModel)]="user.claUsuario" placeholder="Ingrese su contraseña" required>
         <p class="error"></p>
         <button>Ingresar</button>
         <a href="#">¿Olvidaste tu contraseña?</a>

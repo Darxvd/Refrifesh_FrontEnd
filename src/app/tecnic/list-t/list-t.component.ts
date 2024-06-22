@@ -8,30 +8,55 @@ import { Router } from '@angular/router';
   templateUrl: './list-t.component.html',
   styleUrls: ['./list-t.component.css']
 })
-export class ListTComponent implements OnInit{
+export class ListTComponent implements OnInit {
 
-  tecnic: TecnicEntity[]=[];
+  tecnic: TecnicEntity[] = [];
+  currentPage = 0;
+  pageSize = 5;
+  totalItems = 0;
+  totalPages = 0;
 
-  constructor(private sTecnic: TecnicService, private router: Router){}
-
+  
+  constructor(private sTecnic: TecnicService, private router: Router) { }
+  
   ngOnInit(): void {
     this.getTecnicActive();
   }
-
-  getId(id:number){
-    this.sTecnic.id=id;
-    this.router.navigate(['tecnico/update']);
+  
+  getTecnicActive(): void {
+    this.sTecnic.getTecnicActive(this.currentPage, this.pageSize).subscribe(data => {
+      this.tecnic = data.content;
+      this.totalItems = data.totalElements;
+      this.calculateTotalPages();
+    });
   }
 
-  getTecnicActive(){
-    this.sTecnic.getTecnicActive().subscribe(tecnic=>{
-      this.tecnic=tecnic;
-    })
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.totalItems / this.pageSize);
   }
 
-  deleteSoftTecnic(id:number){
-    this.sTecnic.deleteSoftTecnic(id).subscribe(tecnic=>{
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.getTecnicActive();
+  }
+    
+  arrayOne(): any[] {
+    return Array(this.totalPages).fill(0).map((x, i) => i);
+  }
+
+  getId(id: number) {
+    this.sTecnic.id = id;
+    this.router.navigate(['/home/tecnico/update']);
+  }
+
+  deleteSoftTecnic(id: number) {
+    this.sTecnic.deleteSoftTecnic(id).subscribe(tecnic => {
       this.getTecnicActive();
-    })
+    });
   }
+  
+  getImageUrl(relativeUrl: string): string {
+    return `http://localhost:8085${relativeUrl}`; 
+  }
+
 }

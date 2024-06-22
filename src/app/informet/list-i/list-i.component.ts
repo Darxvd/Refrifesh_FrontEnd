@@ -34,4 +34,21 @@ export class ListIComponent implements OnInit{
       this.inform = inform;
     })
   }
+
+  downloadInforme(idInfo: number): void {
+    this.sInform.downloadInformeTecnico(idInfo).subscribe(blob => {
+      
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `informe_tecnico_${idInfo}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error al descargar el informe', error);
+    });
+  }
+
 }

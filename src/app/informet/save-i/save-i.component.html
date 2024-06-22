@@ -1,0 +1,155 @@
+<form [formGroup]="fmrInfTecnic" (ngSubmit)="saveInformTecnic()">
+    <div class="container">
+        <div class="row mb-3 mt-3">
+            <div class="col-12 col-md-6">
+                <h3>Informe Técnico</h3>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-md-end">
+                <div class="me-3">
+                    <label for="fechaInfo" class="form-label me-2">Fecha:</label>
+                    <input type="text" class="form-control d-inline-block" id="fechaInfo" formControlName="fechaInfo" style="width: 120px;" readonly>
+                </div>
+                <div>
+                    <label for="horaInfor" class="form-label me-2">Hora:</label>
+                    <input type="text" class="form-control d-inline-block" id="horaInfor" formControlName="horaInfor" style="width: 80px;" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
+            <h3>Empresa</h3>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar empresa por Razon social" (input)="searchEnterprisesByRzc($event)" id="searchInput">
+                <button type="button" class="btn btn-secondary" (click)="cleanInputEnterprise()">limpiar</button>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let enterprise of enterprises" (click)="selectEnterprise(enterprise)">
+                    {{ enterprise.rzcEmpresa }}
+                </li>
+            </ul>
+            <input type="text" class="form-control" [value]="selectedEnterprise?.idEmpresa" hidden id="idempresa" formControlName="idEmpresa">
+            <div>
+                <h6>Seleccionada:</h6>
+                <input type="text" class="form-control" [value]="selectedEnterprise?.rzcEmpresa" disabled id="nombreempresa">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
+            <h3>Técnico</h3>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar tecnico por nombre" (input)="searchTecnicByTec($event)" id="searchInputs">
+                <button type="button" class="btn btn-secondary" (click)="cleanInputTecnic()">limpiar</button>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let tecnic of tecnics" (click)="selectTecnic(tecnic)">
+                    {{ tecnic.tecTecnico }}
+                </li>
+            </ul>
+            <input type="text" class="form-control" [value]="selectedtecnic?.idTecnico" id="idtecnico" formControlName="idTecnico" hidden>
+            <div>
+                <h6>Seleccionada:</h6>
+                <input type="text" class="form-control" [value]="selectedtecnic?.tecTecnico" id="nombretecnico" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
+            <h3>Máquina</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nroserie" class="form-label">Nro Serie</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese Nro de Serie" name="" formControlName="nserieMaquina">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="equipo" class="form-label">Equipo</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese equipo" name="" formControlName="nomMaquina">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="marca" class="form-label">Marca</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese marca" name="" formControlName="mcaMaquina">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="modelo" class="form-label">Modelo</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese modelo" name="" formControlName="modMaquina">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="area" class="form-label">Área/Ubicación</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese ubicación" name="" formControlName="arubiMaquina">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="voltaje" class="form-label">Voltaje</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese voltaje" name="" formControlName="voltMaquina">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="amperaje" class="form-label">Amperaje</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese Amperaje" name="" formControlName="ampMaquina">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="gas" class="form-label">Gas</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese Gas" name="" formControlName="gasMaquina">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="potencia" class="form-label">Potencia</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese potencia" name="" formControlName="potMaquina">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="temperatura" class="form-label">Temperatura</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese temperatura" name="" formControlName="temMaquina">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="presion" class="form-label">Presion</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese Gas" name="" formControlName="preMaquina">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="otros" class="form-label">Otros</label>
+                    <input type="text" class="form-control" id="" placeholder="Ingrese otros" name="" formControlName="otrosMaquina">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
+            <h3>Falla [Estado de la maquina]</h3>
+            <div class="form-floating">
+                <textarea class="form-control" style="height: 100px" formControlName="fallaInfo"></textarea>
+                <label for="floatingTextarea2">Ingrese falla</label>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
+            <h3>Observaciones</h3>
+            <div class="form-floating">
+                <textarea class="form-control" style="height: 100px" formControlName="obserInfo"></textarea>
+                <label for="floatingTextarea2">Ingrese observación</label>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
+            <h3>Recomendaciones</h3>
+            <div class="form-floating">
+                <textarea class="form-control" style="height: 100px" formControlName="recoInfo"></textarea>
+                <label for="floatingTextarea2">Ingrese recomendaciones</label>
+            </div>
+        </div>
+    </div>
+    <!--Firma de cliente
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    -->
+    <div class="container mt-3 mb-3">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+        </div>
+    </div>
+</form>

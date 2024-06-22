@@ -10,27 +10,50 @@ import { Router } from '@angular/router';
   styleUrls: ['./save-t.component.css']
 })
 export class SaveTComponent {
+  frmTecnic: FormGroup;
+  selectedFile: File | null = null;
 
-  frmTecnic = new FormGroup({
-    idTecnico: new FormControl(''),
-    tecTecnico: new FormControl(''),
-    actTecnico: new FormControl('')
-  })
-
-  constructor(private sTecnic: TecnicService, private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private sTecnic: TecnicService, private router: Router) {
+    this.frmTecnic = this.formBuilder.group({
+      tecTecnico: ['', Validators.required],
+      firmaImagen: [null], // Inicializado a null para manejar la imagen
+      actTecnico: ['Activo']
+    });
   }
 
-  saveTecnic(){
-    this.sTecnic.saveTecnic(this.frmTecnic.value).subscribe(res=>{
-      this.frmTecnic.reset();
-      this.router.navigate(['tecnico/list'])
-    })
+  saveTecnic() {
+    if (this.frmTecnic.valid) {
+      const formData = new FormData();
+      formData.append('tecTecnico', this.frmTecnic.get('tecTecnico')!.value);
+      formData.append('actTecnico', this.frmTecnic.get('actTecnico')!.value);
+
+      if (this.selectedFile) {
+        formData.append('firmaImagen', this.selectedFile);
+      }
+
+      this.sTecnic.saveTecnic(formData).subscribe(
+        response => {
+          console.log('Técnico guardado correctamente:', response);
+          this.frmTecnic.reset();
+          this.router.navigate(['home/tecnico/list']);
+        },
+        error => {
+          console.error('Error al guardar técnico:', error);
+        }
+      );
+    } else {
+      console.error('El formulario no es válido. Verifica los campos.');
+    }
   }
 
-  
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
+
   exitList() {
-    this.router.navigate(['tecnico/list']);
+    this.router.navigate(['home/tecnico/list']);
   }
 }

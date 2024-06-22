@@ -1,6 +1,6 @@
 export class TecnicEntity {
-    idTecnico!: number;
-    tecTecnico!: string;
-    actTecnico!: string;
-  }
-  
+  idTecnico!: number;
+  tecTecnico!: string;
+  actTecnico!: string;
+  firmaImagenUrl!: string;
+}

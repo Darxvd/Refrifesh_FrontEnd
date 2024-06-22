@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { EnterpriseComponent } from './enterprise/enterprise.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NavbarComponent } from './home/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SaveComponent } from './enterprise/save/save.component';
 import { ListComponent } from './enterprise/list/list.component';
@@ -17,6 +17,9 @@ import { UpdateTComponent } from './tecnic/update-t/update-t.component';
 import { InformetComponent } from './informet/informet.component';
 import { ListIComponent } from './informet/list-i/list-i.component';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { PersonComponent } from './person/person.component';
+import { SaveIComponent } from './informet/save-i/save-i.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { LoginComponent } from './login/login.component';
     UpdateTComponent,
     InformetComponent,
     ListIComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    PersonComponent,
+    SaveIComponent
   ],
   imports: [
     BrowserModule,

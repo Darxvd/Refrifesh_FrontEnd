@@ -1,6 +1,6 @@
-<div class="container">
+<!--<div class="container">
     <div class="container">
-        <button type="button" class="btn btn-outline-secondary" (click)="exitList()">
+        <button type="button" class="btn btn-outline-secondary mt-3 mb-3" (click)="exitList()">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
             </svg>
@@ -10,8 +10,14 @@
     <form [formGroup]="frmTecnic" (ngSubmit)="saveTecnic()">
         <div class="container">
             <h5>Registrar</h5>
-                    <label for="tecTecnico" class="form-label">Tecnico</label>
-                    <input  type="text" class="form-control" id="tecTecnico" placeholder="Ingrese tecnico" name="tecTecnico" formControlName="tecTecnico">
+            <div class="mb-3">
+                <label for="nombreCompleto" class="form-label">Tecnico</label>
+                <input type="text" class="form-control" id="tecTecnico" placeholder="Ingrese nombre completo" formControlName="tecTecnico">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Cargar Firma</label>
+                <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" formControlName="firmaImagen">
+            </div>
             <div class="row">
                 <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Registrar</button>
@@ -19,4 +25,38 @@
             </div>
         </div>
     </form>
-</div>
+</div>-->
+
+<div class="container">
+    <div class="container">
+      <button type="button" class="btn btn-outline-secondary mt-3 mb-3" (click)="exitList()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+        Regresar
+      </button>
+    </div>
+    <form [formGroup]="frmTecnic" (ngSubmit)="saveTecnic()">
+      <div class="container">
+        <h5>Registrar Técnico</h5>
+        <div class="mb-3">
+          <label for="tecTecnico" class="form-label">Nombre del Técnico</label>
+          <input type="text" class="form-control" id="tecTecnico" placeholder="Ingrese nombre completo"
+            formControlName="tecTecnico">
+        </div>
+        <div class="mb-3">
+          <label for="firmaImagen" class="form-label">Cargar Firma</label>
+          <input type="file" class="form-control" id="firmaImagen" (change)="onFileSelected($event)">
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Guardar Técnico</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  
