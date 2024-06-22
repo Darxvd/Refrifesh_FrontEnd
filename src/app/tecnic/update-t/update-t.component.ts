@@ -12,39 +12,45 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class UpdateTComponent implements OnInit{
 
   tecnic: TecnicEntity = new TecnicEntity();
+  frmTecnic: FormGroup;
+  
+  selectedFile: File | null = null;
 
-  frmTecnic = new FormGroup({
-    idTecnico: new FormControl(''),
-    tecTecnico: new FormControl(''),
-    actTecnico: new FormControl('')
-  })
-
-  constructor(private router: Router, private sTecnic: TecnicService, private formBuilder: FormBuilder) {  }
+  constructor(private router: Router, private sTecnic: TecnicService, private formBuilder: FormBuilder) {
+    this.frmTecnic = this.formBuilder.group({
+      tecTecnico: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.getDataTecnic();
   }
 
-  getDataTecnic(){
-    this.sTecnic.getIdTecnic().subscribe(data=>{
+  getDataTecnic() {
+    this.sTecnic.getIdTecnic().subscribe(data => {
       this.tecnic = data;
       this.frmTecnic.patchValue({
-        idTecnico: this.tecnic.idTecnico.toString(),
         tecTecnico: this.tecnic.tecTecnico
-      })
-    })
+      });
+    });
   }
 
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
 
   updateTecnic() {
-    this.sTecnic.updateTecnic(this.tecnic.idTecnico, this.frmTecnic.value).subscribe(data=>{
+    this.tecnic.idTecnico = this.frmTecnic.value.idTecnico;
+
+    this.sTecnic.updateTecnic(this.tecnic.idTecnico, this.tecnic).subscribe(data => {
       this.frmTecnic.reset();
       this.router.navigate(['home/tecnico/list']);
-    })
+    });
   }
-  
-  
-  
+
   exitList() {
     this.router.navigate(['home/tecnico/list']);
   }

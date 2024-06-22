@@ -20,7 +20,6 @@ export class LoginComponent {
   onSubmit() {
     this.loginService.login(this.user).subscribe(
       (response: UserDEntity) => {
-        console.log('Respuesta del servicio de inicio de sesión:', response);
         this.loginService.setLoggedInUser(response);
         this.router.navigate(['home']);
       },

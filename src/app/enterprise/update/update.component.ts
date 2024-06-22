@@ -17,10 +17,8 @@ export class UpdateComponent implements OnInit{
     idEmpresa: new FormControl(''),
     rucEmpresa: new FormControl(''),
     rzcEmpresa: new FormControl(''),
-    ncoEmpresa: new FormControl(''),
     dirEmpresa: new FormControl(''),
-    disEmpresa: new FormControl(''),
-    actEmpresa: new FormControl('')
+    disEmpresa: new FormControl('')
   })
 
   constructor(private router: Router, private sEnterprise: EntepriseService){}
@@ -36,7 +34,6 @@ export class UpdateComponent implements OnInit{
         idEmpresa: this.enterprise.idEmpresa.toString(),
         rucEmpresa: this.enterprise.rucEmpresa,
         rzcEmpresa: this.enterprise.rzcEmpresa,
-        ncoEmpresa: this.enterprise.ncoEmpresa,
         dirEmpresa: this.enterprise.dirEmpresa,
         disEmpresa: this.enterprise.disEmpresa
       })

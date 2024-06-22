@@ -10,42 +10,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./save-t.component.css']
 })
 export class SaveTComponent {
-
-  frmTecnic = new FormGroup({
-    idTecnico: new FormControl(''),
-    tecTecnico: new FormControl('', Validators.required),
-    actTecnico: new FormControl('')
-  });
+  frmTecnic: FormGroup;
   selectedFile: File | null = null;
 
-  constructor(private sTecnic: TecnicService, private router: Router) { }
-
-  ngOnInit(): void { }
-
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+  constructor(private formBuilder: FormBuilder, private sTecnic: TecnicService, private router: Router) {
+    this.frmTecnic = this.formBuilder.group({
+      tecTecnico: ['', Validators.required],
+      firmaImagen: [null], // Inicializado a null para manejar la imagen
+      actTecnico: ['Activo']
+    });
   }
 
   saveTecnic() {
-    const tecTecnico = this.frmTecnic.get('tecTecnico');
-    if (tecTecnico && tecTecnico.value) {
+    if (this.frmTecnic.valid) {
       const formData = new FormData();
-      formData.append('tecTecnico', tecTecnico.value);
-      formData.append('actTecnico', 'Activo'); 
+      formData.append('tecTecnico', this.frmTecnic.get('tecTecnico')!.value);
+      formData.append('actTecnico', this.frmTecnic.get('actTecnico')!.value);
+
       if (this.selectedFile) {
         formData.append('firmaImagen', this.selectedFile);
       }
-    
-      this.sTecnic.saveTecnic(formData).subscribe(res => {
-        this.frmTecnic.reset();
-        this.router.navigate(['home/tecnico/list']);
-      });
+
+      this.sTecnic.saveTecnic(formData).subscribe(
+        response => {
+          console.log('Técnico guardado correctamente:', response);
+          this.frmTecnic.reset();
+          this.router.navigate(['home/tecnico/list']);
+        },
+        error => {
+          console.error('Error al guardar técnico:', error);
+        }
+      );
     } else {
-      console.error('El campo nombreCompleto es nulo o está vacío.');
+      console.error('El formulario no es válido. Verifica los campos.');
     }
   }
-  
-  
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
 
   exitList() {
     this.router.navigate(['home/tecnico/list']);
