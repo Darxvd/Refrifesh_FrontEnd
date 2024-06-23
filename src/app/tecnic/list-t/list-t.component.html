@@ -14,7 +14,7 @@
           <th scope="row">{{ tecnico.idTecnico }}</th>
           <td>{{ tecnico.tecTecnico }}</td>
           <td>
-            <img [src]="getImageUrl(tecnico.firmaImagenUrl)" class="img-fluid" alt="Firma del técnico">
+            <img [src]="getImageUrl(tecnico.firmaImagenUrl)" width="100px" height="100px" class="img-fluid" alt="Firma del técnico">
           </td>
           <td>
             <a class="btn btn-warning" (click)="getId(tecnico.idTecnico)">
@@ -41,7 +41,7 @@
         <h5 class="card-title">ID: {{ tecnico.idTecnico }}</h5>
         <p class="card-text"><strong>Técnico:</strong> {{ tecnico.tecTecnico }}</p>
         <td>
-          <img [src]="getImageUrl(tecnico.firmaImagenUrl)" class="img-fluid" alt="Firma del técnico">
+          <img [src]="getImageUrl(tecnico.firmaImagenUrl)" width="70px" height="50px" class="img-fluid" alt="Firma del técnico">
         </td>
         <div class="btn-group" role="group" aria-label="Acciones">
           <a class="btn btn-warning" (click)="getId(tecnico.idTecnico)">

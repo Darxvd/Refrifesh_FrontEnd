@@ -1,6 +1,16 @@
-<form [formGroup]="fmrInfTecnic" (ngSubmit)="saveInformTecnic()">
+<div class="container">
+    <button type="button" class="btn btn-outline-secondary mt-3 " (click)="exitList()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+      </svg>
+      Regresar
+    </button>
+  </div>
+<form [formGroup]="frmInformeTecnic" (ngSubmit)="saveInforme()">
     <div class="container">
-        <div class="row mb-3 mt-3">
+        <div class="row mb-2 mt-3">
             <div class="col-12 col-md-6">
                 <h3>Informe Técnico</h3>
             </div>
@@ -15,11 +25,12 @@
                 </div>
             </div>
         </div>
+
         <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
             <h3>Empresa</h3>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Buscar empresa por Razon social" (input)="searchEnterprisesByRzc($event)" id="searchInput">
-                <button type="button" class="btn btn-secondary" (click)="cleanInputEnterprise()">limpiar</button>
+                <button type="button" class="btn btn-secondary" (click)="cleanInputEnterprise()">Limpiar</button>
             </div>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let enterprise of enterprises" (click)="selectEnterprise(enterprise)">
@@ -33,12 +44,13 @@
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <div class="container mt-3">
         <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
             <h3>Técnico</h3>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Buscar tecnico por nombre" (input)="searchTecnicByTec($event)" id="searchInputs">
-                <button type="button" class="btn btn-secondary" (click)="cleanInputTecnic()">limpiar</button>
+                <input type="text" class="form-control" placeholder="Buscar técnico por nombre" (input)="searchTecnicByTec($event)" id="searchInputs">
+                <button type="button" class="btn btn-secondary" (click)="cleanInputTecnic()">Limpiar</button>
             </div>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let tecnic of tecnics" (click)="selectTecnic(tecnic)">
@@ -52,7 +64,8 @@
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <div class="container mt-3">
         <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
             <h3>Máquina</h3>
             <div class="row">
@@ -107,7 +120,8 @@
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <div class="container mt-3">
         <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
             <h3>Falla [Estado de la maquina]</h3>
             <div class="form-floating">
@@ -116,7 +130,8 @@
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <div class="container mt-3">
         <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
             <h3>Observaciones</h3>
             <div class="form-floating">
@@ -125,7 +140,8 @@
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <div class="container mt-3">
         <div class="container mt-3" style="border: 1px solid gray; padding: 10px; border-radius: 5px;">
             <h3>Recomendaciones</h3>
             <div class="form-floating">
@@ -134,22 +150,34 @@
             </div>
         </div>
     </div>
-    <!--Firma de cliente
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    -->
-    <div class="container mt-3 mb-3">
+</form>
+<div class="container mt-1">
+    <div class="container mt-3 p-3 border border-gray rounded">
+        <h3>Firmar cliente</h3>
         <div class="row">
-            <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Registrar</button>
+            <div class="col-12 col-md-6 text-center">
+                <canvas #canvas class="border border-dark w-100"
+                        (touchstart)="startDrawing($event)" 
+                        (touchmove)="moved($event)" 
+                        height="100">
+                </canvas>
+            </div>
+            <div *ngIf="!signatureNeeded" class="col-12 col-md-6 text-center mt-3 mt-md-0" id="imgCliente">
+                <h5>Firma preestablecida</h5>
+                <img [src]="signatureImg" alt="Firma" class="img-fluid" />
             </div>
         </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button class="btn btn-secondary me-2" (click)="clearPad()">Limpiar</button>
+            <button class="btn btn-primary" (click)="savePad()">Guardar firma</button>
+        </div>
     </div>
-</form>
+</div>
+
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary" (click)="saveInforme()" [disabled]="!frmInformeTecnic.valid">Registrar</button>
+        </div>
+    </div>
+</div>

@@ -39,7 +39,7 @@ import { SaveIComponent } from './informet/save-i/save-i.component';
     LoginComponent,
     HeaderComponent,
     PersonComponent,
-    SaveIComponent
+    SaveIComponent,
   ],
   imports: [
     BrowserModule,

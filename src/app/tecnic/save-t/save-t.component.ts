@@ -16,7 +16,7 @@ export class SaveTComponent {
   constructor(private formBuilder: FormBuilder, private sTecnic: TecnicService, private router: Router) {
     this.frmTecnic = this.formBuilder.group({
       tecTecnico: ['', Validators.required],
-      firmaImagen: [null], // Inicializado a null para manejar la imagen
+      firmaImagen: [null],
       actTecnico: ['Activo']
     });
   }
